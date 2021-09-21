@@ -26,13 +26,37 @@ let player = {
 
 
 // Define the Product class - write the Constructor function for Product class here
+function Product(id, name, price, expiryDate) {
+    this.id = id;
+    this.name = name;
+    this.price = price; 
+    this.expiryDate = expiryDate;
+}
+
 
 // Complete the dateDiff function
-const dateDiff = (date1, date2) => {};
+const dateDiff = (date1, date2) => {
+    difference = 0, 
+    daysInBetween = 1000 * 60 * 60 * 24;
+
+    difference = date2 - date1;
+    return Math.floor(difference / days); 
+};
 
 // Here, use Object.defineProperty to create property - daysToExpire
 
+Object.defineProperty(Product.protype, 'daysToExpire', {
+    function getter () {
+        return dateDiff(this.expiryDate, new Date())
+    }
+})
+
 // Add method getDetails to Product here
+
+Product.prototype.getDetails = function () {
+
+    return `Product Name: ${this.name} , Product Price: ${this.price}`
+}
 
 // Define the MagicProduct class here
 
@@ -340,6 +364,8 @@ function init(data) {
 
 
 
+const { diffieHellman } = require("crypto");
+const { setUncaughtExceptionCaptureCallback } = require("process");
     ///////////////////////////////////////////////////////////////
     const readline = require("readline");
     require('colors');
